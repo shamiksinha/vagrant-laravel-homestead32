@@ -18,7 +18,7 @@ $.ajaxSetup({
 	 	var bookname=id.split('.')[0];
 	 	var downloadDiv = $('#downloadLink');
 	    downloadDiv.append($('<a>').attr('href', 'pdf/'+id).attr('download', 'pdf/'+id).text('Download'));
-	    $("#white-box").html(embedSWF('swf/'+bookname));
+	    $("#Display-box").html(embedSWF('swf/'+bookname));
 	 });
  $("#back").click(function(){
 	event.preventDefault();

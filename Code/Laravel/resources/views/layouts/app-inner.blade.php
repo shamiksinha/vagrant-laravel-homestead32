@@ -71,7 +71,7 @@
 				</div>
 			</div>
 		</nav>-->
-		<div class="centerLayout">
+		<div class="Inner-LayoutInside">
 			<nav id="Top-Nav-panel">
 				<div
 					style="width: 500px; margin-left: 20px; float: left; padding-bottom: 20px;">
@@ -117,52 +117,45 @@
 					</map>
 				</div>
 			</nav>
-			<div id="top-bg">
-				<div id="TitlePad">
-					<div id="RKMlogo"></div>
-					<h1>{{ config('app.name', 'Laravel') }}</h1>
-					<h2>100 years E-Book for You</h2>
-				</div>
-				<div id="SearchPanel">
-					<div id="search-layer">
-						<form id="searchform" name="searchform" method="post" action="/search">
-							{{ csrf_field() }}
-							<span id="searchfield1"> <input type="text" name="Search"
-								id="Search" /> <!-- <span class="textfieldRequiredMsg">Search</span> --></span>
-
-							<div id="SearchButton" onclick="event.preventDefault();
-                                                     document.getElementById('searchform').submit();"></div>
-							<br /> <br /> <br />
-							<p>Please enter bengali year for 100 years e-book.</p>
-						</form>
-					</div>
-					<div id="Ebok-icon">
-						<img src="images/book_RKM.png" />
+			<!--<div id="top-bg">-->
+				<div id="white-boxTitle">
+					<div id="innertop">
+						<!--<div id="RKMlogo"></div>-->
+						<div class="InsideTitle">{{ config('app.name', 'Laravel') }}</div>
+						<div class="InsideSubTitle">100 years E-Book for You</div>
 					</div>
 				</div>
-			</div>
-			<div id="main-bg">
-				<div id="box">@yield('content')</div>
-				<div id="BoxPanel">
-					<div id="box1">
-						<a href="#"><img src="images/blog-1.jpeg" width="150" height="90" /></a>
-						<p>
-							<a href="#">Blog</a>
-						</p>
-					</div>
-					<div id="box2">
-						<img src="images/e-bookRKM-100.png" width="150" height="90" />
-						<p>Udbodhan 100 Years</p>
-					</div>
-					<div id="box3">
-						<img src="images/subscribe-3.jpg" width="150" height="90" />
-						<p>Subscribe</p>
-					</div>
+				<div id="inner-Conten">
+					<div id="white-boxInside">
+						<div style="padding:20px;">
+							<div id="search-layerInsd">
+								<form id="searchform" name="searchform" method="post" action="/search">
+									{{ csrf_field() }}
+									<span id="searchfield1"> <input type="text" name="Search"
+										id="Search" /> <!-- <span class="textfieldRequiredMsg">Search</span> --></span>
 
+									<div id="SearchButton" onclick="event.preventDefault();
+															 document.getElementById('searchform').submit();"></div>
+									<br /> <br /> <br />
+									<p>Please enter bengali year for 100 years e-book.</p>
+								</form>
+							</div>
+							<!--<div id="Ebok-icon">
+								<img src="images/book_RKM.png" />
+							</div>-->
+							<div style="padding-top:150px; height:auto">
+								<p>Search result </p>
+								<div id="box">
+									@yield('content')
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="Ad-space">1sdasadjd kADK</div>
 				</div>
 			</div>
 			<div class="footer">Copyright © 2017 by Ramkrish Math</div>
-		</div>
+		<!--</div>-->
 	</div>
 
 	<!-- Scripts -->

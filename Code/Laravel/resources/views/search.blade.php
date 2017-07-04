@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-inner')
 @section('content')
 <div id="searchResult">
 	@if(isset($query))
@@ -18,7 +18,7 @@
 	<a href="#" id="back">&ldsh; Go back</a>
 	<div id="downloadLink" class="centerLayout"></div>
 	<br />	
-	<div id="white-box">
+	<div id="Display-box">
 	</div>	
 </div>
 

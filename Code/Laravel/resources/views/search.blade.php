@@ -8,14 +8,13 @@
 		@if(isset($results))
 			@php ($facets=$results->getFacetSet()->getFacets()['bookname'])
 			@foreach ($facets as $bookname=>$count)
-				<h3> <a href="#" class="books" id="{{ $bookname }}">{{ $bookname }}</a></h3>
-				<br /> 
+				<a href="#" class="books" id="{{ $bookname }}">{{ $bookname }}</a>,				
 			@endforeach
 		@endif
 	@endif
 </div>
 <div id="showpdf" style="display: none">
-	<a href="#" id="back">&ldsh; Go back</a>
+	<!--<a href="#" id="back">&ldsh; Go back</a>-->
 	<div id="downloadLink" class="centerLayout"></div>
 	<br />	
 	<div id="Display-box">

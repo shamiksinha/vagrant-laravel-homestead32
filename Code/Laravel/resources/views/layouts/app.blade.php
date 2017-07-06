@@ -76,11 +76,11 @@
 				<div
 					style="width: 500px; margin-left: 20px; float: left; padding-bottom: 20px;">
 					<ul>
-						<li><a class="active" href="#home">Home</a></li>
+						<li><a class="active" href="{{ url('/') }}">Home</a></li>
 						<li><a href="#E-Book">E-Book</a></li>
 						<li><a href="#Blog">Blog</a></li>
 						<!-- <li><a href="#about">Subscribe</a></li> -->
-						<li><a href="/search">Search</a></li>
+						<li><a href="{{ url('/search') }}">Search</a></li>
 						<!-- <li><a href="#about">Sitemap</a></li> -->
 						<!-- Authentication Links -->
 						@if (Auth::guest())

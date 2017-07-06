@@ -100,7 +100,7 @@ html, body {
 	padding-bottom:50px;
 	padding-top:10px;
 	width:780px;
-	min-height:100%px;
+	min-height:100%;
 	background-image:url(../images/RKM-bg-001.png);
 	background-repeat:repeat-y;
 
@@ -109,7 +109,7 @@ html, body {
 #box
 {
 
-  width:100%px;
+  width:100%;
   height: auto;
   background-color: #fff;
   border-radius: 6px;
@@ -143,7 +143,7 @@ html, body {
 #Display-box
 {
 
-  width:100%px;
+  width:100%;
   height: auto;
   background-color: #E2E2E2;
   border-radius: 6px;
@@ -311,7 +311,7 @@ border-bottom-color:#FFF;
 	}
 	
 	
-	#Inner-socialMedia{
+#Inner-socialMedia{
 	padding-top:5px;
 	margin-top:0px;
 	margin-right:10px;
@@ -412,7 +412,7 @@ h2 {
 
 	}
 	
-		#boxshadowSmll {
+#boxshadowSmll {
 	float:left;
     position:absolute;
     -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);

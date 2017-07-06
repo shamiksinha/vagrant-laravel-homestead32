@@ -143,12 +143,12 @@
 							<!--<div id="Ebok-icon">
 								<img src="images/book_RKM.png" />
 							</div>-->
-							<div style="padding-top:150px; height:auto">
-								<p>Search result </p>
-								<div id="box">
+							<!--<div style="padding-top:150px; height:auto">-->
+								<!--<p>Search result </p>-->
+								<!--<div id="box">-->
 									@yield('content')
-								</div>
-							</div>
+								<!--</div>-->
+							<!--</div>-->
 						</div>
 					</div>
 					<div id="Ad-space">1sdasadjd kADK</div>

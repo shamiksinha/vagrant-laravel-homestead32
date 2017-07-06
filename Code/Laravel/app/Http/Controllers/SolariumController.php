@@ -31,8 +31,9 @@ class SolariumController extends Controller {
 		if ($request->getMethod () == Request::METHOD_POST) {
 			$input = $request->input();
 			$searchField=$input['Search'];
-			$pattern="/ /";
+			$pattern="/ /";			
 			$searchWords=preg_split($pattern, $searchField);
+			
 			//echo 'Search Words:';
 			//print_r($searchWords);
 			
@@ -40,17 +41,28 @@ class SolariumController extends Controller {
 			$query = $client->createSelect();
 			
 			// print_r($query);
-			$query->setQuery('author_txt_en_split:girish');
+			$queryString=NULL;
+			foreach ($searchWords as $searchWord) {
+				if (isset($queryString)){
+					$queryString.=' and ';
+				}
+				if (!is_numeric($searchWord)){
+					$queryString.='author_txt_en_split:*'.$searchWord.'* or subject_txt_en_split:*'.$searchWord.'* or bookmonth_txt_en_split:*'.$searchWord.'*';
+				} else {
+					$queryString.='bookyear_i:*'.$searchWord.'* or booknumber_i:*'.$searchWord.'*';
+				}
+			}
+			$query->setQuery($queryString);
 			//$query->addFilterQuery(array('key'=>'bookname', 'query'=>'*:*'));
 			// $query->addFilterQuery(array('key'=>'degree', 'query'=>'degree:MBO', 'tag'=>'exclude'));
 			$facets = $query->getFacetSet();
 			$facets->createFacetField('bookname')->setField('bookname_ws');
 			$facets->setMinCount(1);
 			//$groupComp=$query->getGrouping();
-			//$groupComp->addField('bookname_ws');
+			//$groupComp->addField('bookname_ws');			
+			$query->setFields(array('bookname_ws','author_txt_en_split','bookyear_i','bookmonth_txt_en_split','subject_txt_en_split'));
 			//echo 'Query:<br/>';
 			//print_r($query);
-			$query->setFields(array('bookname_ws','author_txt_en_split','bookyear_i','bookmonth_txt_en_split','subject_txt_en_split'));
 			
 			$resultset = $client->select( $query );
 			//echo '<br/><br/> ResultSet:<br/>';

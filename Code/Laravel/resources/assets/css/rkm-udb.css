@@ -10,6 +10,7 @@ html, body {
 	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
 	color: #000000;
 	background-color:#C60;
+	background:url(../images/blr-math-bg.jpg) no-repeat fixed;
 	font-size:12px;
 }
  html, body, a {
@@ -71,11 +72,25 @@ html, body {
   width: 100%;
 }
 
-#Top-Nav-panel{
+#Top-Nav-panel, #TopNav-index{
+	width:100%;
 	height:40px;
 	clear:both;
 	padding-bottom:0px;
 	background-color:#C60;
+	position:fixed;
+	margin-top:0px;
+		 -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+
+	}
+
+#TopNav-index{
+	marker-offset:inherit;
+	width:770px;
+	margin-right:40px;
+	border-radius: 4px;
 	}
 
 #top-bg {
@@ -90,23 +105,23 @@ html, body {
   width: 1024px;
   height:200px;
   background:url(../images/inner-header-new-03.png) no-repeat;
-  /*background-image:url(../rkm-images/inner-header-new-02.png) no-repeat;*/
+  /*background-image:url(../images/inner-header-new-02.png) no-repeat;*/
 }
 
 
 #main-bg {
-	align-content: center;
+	align-content: center;F
 	position: inherit;
 	padding-bottom:50px;
 	padding-top:10px;
 	width:780px;
-	min-height:100%;
+	min-height:100%px;
 	background-image:url(../images/RKM-bg-001.png);
 	background-repeat:repeat-y;
 
 }
 
-#box
+#box, #boxinsd
 {
 
   width:100%;
@@ -123,18 +138,11 @@ html, body {
 
 #boxinsd
 {
-
-  width: auto;
-  height: auto;
-  background-color: #fff;
-  border-radius: 6px;
-  border: 1px dotted black;
-  opacity: 0.5;
-  color:#000;
-  margin-top:10px;
-  padding:30px;
-  font-size:12px;
-  text-align:justify;
+	margin 20px auto;
+	text-align:center;
+	width:800px;
+  background-color: #DFD6AA;
+  opacity: 0.6;
 
 }
 
@@ -143,13 +151,14 @@ html, body {
 #Display-box
 {
 
-  width:100%;
+  width:100%px;
   height: auto;
   background-color: #E2E2E2;
   border-radius: 6px;
   border: 1px dotted black;
   /*opacity: 0.5;*/
   padding:30px;
+  margin-top:90px;
   font-size:12px;
   text-align:center;
 
@@ -183,6 +192,21 @@ html, body {
 
 }
 
+#Views-BG
+{
+  width:100%;
+  height:auto;
+  background:url(../images/editor-001.jpg) no-repeat fixed;
+  /*background-color:#EDEDED;
+  border: 1px dotted black;
+  opacity: 0.5;*/
+  color:#333;
+  font-size:12px;
+  text-align: center;
+  padding-bottom:50px;
+  padding-top:50px;
+
+}
 #white-boxTitle
 {
   width:100%;
@@ -304,6 +328,7 @@ border-bottom-color:#FFF;
 #socialMedia{
 	padding-top:5px;
 	padding-right:100px;
+	margin-right:20px;
 	margin-top:0px;
 	float:right;
 	width:157px;
@@ -311,7 +336,7 @@ border-bottom-color:#FFF;
 	}
 	
 	
-#Inner-socialMedia{
+	#Inner-socialMedia{
 	padding-top:5px;
 	margin-top:0px;
 	margin-right:10px;
@@ -348,7 +373,16 @@ h2 {
 	text-indent: 10px;
 	line-height:5px;
 	}
-
+.TitleMain {
+	font-family: "Times New Roman", Times, serif;
+	/*font-style:bold;*/
+	font-weight:bold;
+	font-size:56px;
+    color: Black;
+	padding-top:20px;
+    text-shadow: 2px 2px 4px #9d9d9d;
+	
+}
 .InsideTitle {
 	font-family: "Times New Roman", Times, serif;
 	/*font-style:bold;*/
@@ -376,30 +410,29 @@ h2 {
 	font-stretch: wider;
 	font-size:12px;
 	text-indent: 10px;
-
 	margin-top:10px;
 	font-weight:bold;
 	}
 #SearchPanel{
 	clear:both;
-	height: 100px;
+	height: 80px;
+	padding:10px;
 	}
 	
 #search-layer{
 	float:left;
-	margin-top:40px;
-	margin-left:80px;
+	margin-top:20px;
+	margin-left:185px;
 	text-align:left;
 	 width:350px; 
 	 height: auto;"
 	
 	}
 #search-layerInsd{
-	margin-top:30px;
-	margin-left:38px;
-	text-align:left;
+	margin-top:5px;
+	margin-left:5px;
 	 width:350px; 
-	 height: auto;"
+	 height: 10px;"
 	
 	}	
 	
@@ -407,12 +440,20 @@ h2 {
 #Ebok-icon{
 
 	float:left;
+	padding-left:450px;
+	padding-top:15px;
 	height:100;
 	width:100;
 
 	}
 	
-#boxshadowSmll {
+	.SearchImg{
+		height:123px;
+		width:128px;
+		background:url(../images/book_RKM-hover.png) no-repeat;
+		}
+	
+		#boxshadowSmll {
 	float:left;
     position:absolute;
     -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
@@ -430,13 +471,13 @@ h2 {
     border-style: inset;
 }
 
-#Search{
+#Search, #dropDown{
 	float:left;
 	font-size:16px;
 	color:#000;
 	margin-top:2px;
 	width:250px;
-	height:30px;
+	height:32px;
 	background-color: #FC0;
 	border: 1px dotted black;
     opacity: 0.7;
@@ -444,13 +485,18 @@ h2 {
 	border-radius: 4px;
     
 	}
+	 #dropDown{
+		 float:left;
+	width:100px;
+    
+	}
 #SearchButton{
 	float:left;
 	background:url(../images/RKM-search-icon.png) no-repeat;
 	width:30px;
-	height:34px;
+	height:32px;
 	background-color:#000;
-	margin-top:5px;
+	margin-top:2px;
 	margin-left:5px;
     border-radius: 4px;
 	cursor:pointer;
@@ -525,9 +571,275 @@ h2 {
 
 #Ad-space{
 	float:left;
-	padding-top:20px;
-	padding-bottom:20px;
+	text-align:justify;
+	padding:20px 20px 20px 20px;
 	height:200px;
 	background-color:#999;
 	width:100%;
 	}
+/*   Login-css start 
+	section {
+  width: 275px;
+  background: #ecf0f1;
+  padding: 0 30px 30px 30px;
+  margin: 60px auto;
+  text-align: center;
+  border-radius: 5px;
+}*/	
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+section {
+  width: 275px;
+  /*background: #ecf0f1;*/
+  background: #CAB28B;
+  padding: 0 30px 30px 30px;
+  margin: 60px auto;
+  text-align: center;
+  border-radius: 5px;
+box-shadow: 2px 2px 5px rgba(0,0,0,.3);
+}
+
+#sectionSbcrb, #sectionSearch, #SearchResult {
+  width: 600px;
+    background: #CAB28B;
+  padding: 0px 30px 30px 30px;
+  margin: 60px auto;
+  text-align: center;
+  border-radius: 5px;
+box-shadow: 2px 2px 5px rgba(0,0,0,.3);
+}
+
+#sectionSearch, #SearchResult
+ {
+  margin: 30px auto;
+  padding-top:20px;
+  width: 800px;
+}
+
+#SearchResult{
+	margin-top:0px;
+  background-color: #DFD6AA;
+  opacity: 0.6;
+  height:auto;
+    border-radius: 6px;
+  border: 1px dotted black;
+  box-shadow:none;
+	}
+
+.LogoInner {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  top: -40px;
+  height: 80px;
+  width: 80px;
+  background:url(../images/RKM-logo-002.png) center center no-repeat, #f39c12;
+  border-radius: 50%;
+box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 100;
+  margin-bottom: 30px;
+}
+
+input {
+  width: 100%;
+  background: #bdc3c7;
+  border: none;
+  height: 30px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+input:focus {
+  outline: none;
+}
+
+button, .subscrb, .Downld-btn {
+  width: 100%;
+  height: 30px;
+  border: none;
+ background: #d35400;
+  color: #ecf0f1;
+  font-weight: 100;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  transition: all ease-in-out .2s;
+  border-bottom: 3px solid #666;
+}
+.Downld-btn {
+  float:right;
+  width:100px;
+  height: 40px;
+  margin:10px 10px 10px 10px;
+  padding:5px;
+  font-weight:bold;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background: #666;
+}
+
+h2 {
+  font-size: .75em;
+}
+
+a {
+  color: #e74c3c;
+  text-decoration: none;
+  transition: all ease-in-out .2s;
+}
+
+a:hover {
+  color: #FC0;
+}
+
+.subscrb{
+	width:440px;
+}
+.req {
+  	margin:2px;
+  	color: #C00;
+	font-size:14px;
+  }
+  
+ /* Subscribe page bg*/ 
+  
+  #subcrb-boxwrap, #search-boxwrap
+{
+  width:100%;
+  height:auto;
+  background:url(../images/subscribe-bg1.jpg) no-repeat fixed;
+ /* background-color:#EDEDED;
+  border: 1px dotted black;
+  opacity: 0.5;*/
+  color:#333;
+  font-size:12px;
+  text-align: center;
+  padding-bottom:50px;
+  padding-top:50px;
+
+}
+#search-boxwrap
+{
+  background:url(../images/e-book-bg.jpg) no-repeat fixed;
+}
+.flt-left, .flt-big {
+	width:200px;
+	padding:10px;
+	margin:20px;
+	height:30px;
+	background-color:#CCC;
+  }
+  
+ .flt-big {
+	width:440px;
+  }
+  #Flash-Btn{
+	  width:40px;
+	  height:40px;
+	  background:url(../images/Flash-Player-Icon.png) no-repeat;
+	  float:right;
+	  margin:10px 10px 10px 10px;
+	  cursor:se-resize;
+	  }
+	  
+	  
+	  /*-------------image gallery start---------------*/
+
+       .slider-holder
+        {
+            width: 800px;
+            height: 400px;
+            background-color: #666;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0px;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .image-holder
+        {
+            width: 2400px;
+            background-color: #666;
+            height: 400px;
+            clear: both;
+            position: relative;
+            
+            -webkit-transition: left 2s;
+            -moz-transition: left 2s;
+            -o-transition: left 2s;
+            transition: left 2s;
+        }
+        
+        .slider-image
+        {
+            float: left;
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+        }
+        
+        #slider-image-1:target ~ .image-holder
+        {
+            left: 0px;
+        }
+        
+        #slider-image-2:target ~ .image-holder
+        {
+            left: -400px;
+        }
+        
+        #slider-image-3:target ~ .image-holder
+        {
+            left: -800px;
+        }
+		 #slider-image-4:target ~ .image-holder
+        {
+            left: -1200px;
+        }
+         #slider-image-5:target ~ .image-holder
+        {
+            left: -1600px;
+        }
+		 #slider-image-6:target ~ .image-holder
+        {
+            left: -2200px;
+        }
+		 #slider-image-6:target ~ .image-holder
+        {
+            left: -2400px;
+        }
+		
+        .button-holder
+        {
+            position: relative;
+            top: -20px;
+        }
+        
+        .slider-change
+        {
+            display: inline-block;
+            height: 20px;
+            width: 20px;
+            border-radius: 5px;
+            background-color: brown;
+        }
+/*..............image-gallery css-end............*/

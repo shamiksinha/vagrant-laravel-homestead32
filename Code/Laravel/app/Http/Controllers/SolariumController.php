@@ -29,6 +29,7 @@ class SolariumController extends Controller {
 	}
 	public function search(Request $request) {
 		if ($request->getMethod () == Request::METHOD_POST) {
+			$months = array('magh','falgoon','chaitra','baishakh','jaistha','ashar','srabon','vadro','ashyeen','karttik','agrohawan','poush','vadra','jaishtho');
 			$input = $request->input();
 			$searchField=$input['Search'];
 			$pattern="/ /";			
@@ -42,17 +43,57 @@ class SolariumController extends Controller {
 			
 			// print_r($query);
 			$queryString=NULL;
+			$yearsfq=array();
+			$monthsfq=array();
+			$booknumbers=array();
+			$fqString=NULL;
+			$contructedQuery=NULL;
 			foreach ($searchWords as $searchWord) {
-				if (isset($queryString)){
-					$queryString.=' and ';
+				if (isset($queryString) and count(preg_grep('/'.$searchWord.'/',$months))<1){
+					$queryString.=' ';//' and ';
 				}
-				if (!is_numeric($searchWord)){
-					$queryString.='author_txt_en_split:*'.$searchWord.'* or subject_txt_en_split:*'.$searchWord.'* or bookmonth_txt_en_split:*'.$searchWord.'*';
-				} else {
-					$queryString.='bookyear_i:*'.$searchWord.'* or booknumber_i:*'.$searchWord.'*';
+				if (!is_numeric($searchWord) and count(preg_grep('/'.$searchWord.'/',$months))<1){
+					$queryString.=$searchWord;//'author_txt_en_split:*'.$searchWord.'* or subject_txt_en_split:*'.$searchWord.'*';
+					// or bookmonth_txt_en_split:*'.$searchWord.'*';
+				} else if (!is_numeric($searchWord) and count(preg_grep('/'.$searchWord.'/',$months))>0) {
+					$monthsfq[]=$searchWord;
+				} else if (is_numeric($searchWord) and $searchWord<25){
+					$booknumbers[]=$searchWord;
+				}else if (is_numeric($searchWord)) {
+					$yearsfq[]=$searchWord;
+				} 
+				//$queryString.='bookyear_i:*'.$searchWord.'* or booknumber_i:*'.$searchWord.'*';				
+			}
+			if (count($yearsfq)>0){
+				$i=1;
+				foreach ($yearsfq as $year) {
+					$fqString='bookyear_i:'.$year;
+					$query->createFilterQuery('filterByYr'.$i)->setQuery($fqString);
+					$i=$i+1;
 				}
 			}
-			$query->setQuery($queryString);
+			if (count($booknumbers)>0){
+				$i=1;
+				foreach ($booknumbers as $booknumber) {
+					$fqString='booknumber_i:'.$booknumber;
+					$query->createFilterQuery('filterByBooknum'.$i)->setQuery($fqString);
+					$i=$i+1;
+				}
+			}
+			if (count($monthsfq)>0){
+				$i=1;
+				foreach ($monthsfq as $month) {
+					$fqString='bookmonth_txt_en_split:'.$month;
+					$query->createFilterQuery('filterByMonth'.$i)->setQuery($fqString);
+					$i=$i+1;
+				}
+			}
+			if (!isset($queryString)){
+				$queryString='*';	
+			}
+			$contructedQuery='author_txt_en_split:'.trim($queryString).' or subject_txt_en_split:'.trim($queryString);
+			$query->setQuery($contructedQuery);
+			//$query->createFilterQuery('filterByYrMonBooknum')->setQuery($fqString);
 			//$query->addFilterQuery(array('key'=>'bookname', 'query'=>'*:*'));
 			// $query->addFilterQuery(array('key'=>'degree', 'query'=>'degree:MBO', 'tag'=>'exclude'));
 			$facets = $query->getFacetSet();

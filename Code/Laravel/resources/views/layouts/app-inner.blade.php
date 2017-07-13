@@ -24,7 +24,7 @@
     
 </head>
 <body>
-	<div id="app">
+	<div id="app-inner">
 		<!-- <nav class="navbar navbar-default navbar-static-top">
 			<div class="container">
 				<div class="navbar-header">-->
@@ -76,31 +76,32 @@
 				<div
 					style="width: 500px; margin-left: 20px; float: left; padding-bottom: 20px;">
 					<ul>
-						<li><a class="active" href="{{ url('/') }}">Home</a></li>
-						<li><a href="#E-Book">E-Book</a></li>
-						<li><a href="#Blog">Blog</a></li>
-						<!-- <li><a href="#about">Subscribe</a></li> -->
-						<li><a href="{{ url('/search') }}">Search</a></li>
+						<li><a id="home" href="{{ url('/') }}">Home</a></li>
+						<li><a id="ebook" href="{{ url('/gallery') }}">Gallery</a></li>
+						<li><a id="blog" href="{{ url('/views') }}">Views</a></li>
+						<li><a id="subscribe" href="{{ url('/subscribe') }}">Subscribe</a></li>
+						<li><a id="search" href="{{ url('/search') }}">Search</a></li>
 						<!-- <li><a href="#about">Sitemap</a></li> -->
 						<!-- Authentication Links -->
 						@if (Auth::guest())
-						<li><a href="{{ route('login') }}">Login</a></li>
-						<li><a href="{{ route('register') }}">Subscribe</a></li> @else
+						<li><a id="login" href="{{ route('login') }}">Login</a></li>
+						<!--<li><a id="subscribe" href="{{ route('register') }}">Subscribe</a></li>-->
+						@else
 						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-expanded="false"> {{
 								Auth::user()->name }} <span class="caret"></span>
 						</a>
 
 							<ul class="dropdown-menu" role="menu"> -->
-						<li><a href="{{ route('logout') }}"
+							<li><a id="logout" href="{{ route('logout') }}"
 							onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 								Logout </a>
 
 							<form id="logout-form" action="{{ route('logout') }}"
 								method="POST" style="display: none;">{{ csrf_field() }}</form></li>
-						<li><a href="#"> {{ Auth::user()->name }}</a> <!-- </ul></li> -->
-							@endif
+							<li><a id="profile" href="#"> {{ Auth::user()->name }}</a> <!-- </ul></li> -->
+						@endif
 					
 					</ul>
 				</div>
@@ -122,24 +123,12 @@
 					<div id="innertop">
 						<!--<div id="RKMlogo"></div>-->
 						<div class="InsideTitle">{{ config('app.name', 'Laravel') }}</div>
-						<div class="InsideSubTitle">100 years E-Book for You</div>
+						@yield('subtitle')						
 					</div>
 				</div>
 				<div id="inner-Conten">
-					<div id="white-boxInside">
-						<div style="padding:20px;">
-							<div id="search-layerInsd">
-								<form id="searchform" name="searchform" method="post" action="/search">
-									{{ csrf_field() }}
-									<span id="searchfield1"> <input type="text" name="Search"
-										id="Search" /> <!-- <span class="textfieldRequiredMsg">Search</span> --></span>
-
-									<div id="SearchButton" onclick="event.preventDefault();
-															 document.getElementById('searchform').submit();"></div>
-									<br /> <br /> <br />
-									<p>Please enter bengali year for 100 years e-book.</p>
-								</form>
-							</div>
+					
+							
 							<!--<div id="Ebok-icon">
 								<img src="images/book_RKM.png" />
 							</div>-->
@@ -149,9 +138,8 @@
 									@yield('content')
 								<!--</div>-->
 							<!--</div>-->
-						</div>
-					</div>
-					<div id="Ad-space">1sdasadjd kADK</div>
+						
+					<div id="Ad-space">@yield('ad-space')</div>
 				</div>
 			</div>
 			<div class="footer">Copyright © 2017 by Ramkrish Math</div>

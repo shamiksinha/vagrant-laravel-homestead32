@@ -1,4 +1,7 @@
 @extends('layouts.app-inner')
+@section('activelogin')
+class="active"
+@endsection
 @section('subtitle')
 <div class="InsideSubTitle">100 years e-Book for You</div>
 @endsection
@@ -17,10 +20,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                            <label for="firstname" class="col-md-4 control-label">First Name</label>
+                            <!-- <label for="firstname" class="col-md-4 control-label">First Name</label> -->
 
                             <div class="col-md-6">
-                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
+                                <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" placeholder='First Name *' required autofocus>
 
                                 @if ($errors->has('firstname'))
                                     <span class="help-block">
@@ -31,10 +34,10 @@
                         </div>
 						
 						<div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                            <label for="lastname" class="col-md-4 control-label">Last Name</label>
+                            <!-- <label for="lastname" class="col-md-4 control-label">Last Name</label> -->
 
                             <div class="col-md-6">
-                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('firstname') }}" required autofocus>
+                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" placeholder='Last Name *' required autofocus>
 
                                 @if ($errors->has('lastname'))
                                     <span class="help-block">
@@ -45,10 +48,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <!-- <label for="email" class="col-md-4 control-label">E-Mail Address</label> -->
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder='Email Address *' required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -59,10 +62,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <!-- <label for="password" class="col-md-4 control-label">Password</label> -->
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" placeholder='Set Password *' required>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -73,10 +76,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <!-- <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label> -->
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder='Confirm Password *' required>
                             </div>
                         </div>
 

@@ -181,6 +181,11 @@ return [
         * Register Solarium Service Provider
         */
          App\Providers\SolariumServiceProvider::class,
+    		
+    	/*
+    	 * Register AdLdap2 provider
+    	 */
+    	Adldap\Laravel\AdldapServiceProvider::class,
     ],
 
     /*
@@ -229,6 +234,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+    	/*
+    	 * AdLdap2 facade
+    	 */
+    	'Adldap' => Adldap\Laravel\Facades\Adldap::class,
 
     ],
 

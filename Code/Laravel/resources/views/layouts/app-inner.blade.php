@@ -20,8 +20,6 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-    
-    
 </head>
 <body>
 	<div id="app-inner">
@@ -134,7 +132,7 @@
 							</div>-->
 							<!--<div style="padding-top:150px; height:auto">-->
 								<!--<p>Search result </p>-->
-								<!--<div id="box">-->
+								<!--<div id="box">-->									
 									@yield('content')
 								<!--</div>-->
 							<!--</div>-->
@@ -142,13 +140,12 @@
 					<div id="Ad-space">@yield('ad-space')</div>
 				</div>
 			</div>
-			<div class="footer">Copyright © 2017 by Ramkrish Math</div>
+			<div class="footer">Copyright &#x24B8; 2017 by Ramkrishna Math</div>
 		<!--</div>-->
 	</div>
 
-	<!-- Scripts -->
+	<!-- Scripts -->	
 	<script src="{{ asset('js/app.js') }}"></script>
-	
 	@yield('scripts')
 </body>
 </html>

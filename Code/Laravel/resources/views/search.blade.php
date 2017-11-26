@@ -108,8 +108,10 @@ box-shadow: 2px 2px 5px rgba(0,0,0,.3);
 						{{ csrf_field() }}
 						<span id="searchfield1" style="width:100px;"> <input type="text" name="Search"
 							id="Search" value="@isset($query){{$query}}@endisset"/> <!-- <span class="textfieldRequiredMsg">Search</span> -->
-							<input type="checkbox" name="searchBy" value="Search By Author" checked="checked">Search By Author</input>
-							<input type="checkbox" name="searchBy" value="Search By Subject" checked="checked">Search By Subject</input>
+							<!-- <input type="checkbox" name="searchBy" value="Search By Author" checked="checked">Search By Author</input>
+							<input type="checkbox" name="searchBy" value="Search By Subject" checked="checked">Search By Subject</input> -->
+							{{Form::checkbox('searchBy[]', 'searchAuthor', true, ['label'=>'Search By Author'])}}{{Form::label('searchAuthor', 'Search By Author')}}
+							{{Form::checkbox('searchBy[]', 'searchSubject', true, ['label'=>'Search By Subject'])}}{{Form::label('searchSubject', 'Search By Subject')}}
 						</span>
 
 						<div id="dropDown">
@@ -130,7 +132,21 @@ box-shadow: 2px 2px 5px rgba(0,0,0,.3);
 						</div>
 						
 						<div id="SearchButton" onclick="event.preventDefault();
-												 document.getElementById('searchform').submit();"></div>
+							var searchBy=document.getElementsByName('searchBy[]');
+							var i=0;
+							var selectedSearchFilter=false;
+							for (i = 0; i<searchBy.length; i++){
+								if (searchBy[i].type=='checkbox' && searchBy[i].checked==true){
+									selectedSearchFilter=true;
+									break;
+								}
+							}
+							if (selectedSearchFilter){
+								document.getElementById('searchform').submit();
+							}
+							else{
+								alert('Please select a search filter to search');
+							}"></div>
 						<br /> <br /> <br />
 					</form>
 				</div>

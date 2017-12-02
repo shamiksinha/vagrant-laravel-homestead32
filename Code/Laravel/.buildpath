@@ -31,12 +31,7 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/dompdf/dompdf/lib">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/dompdf/dompdf/src">
+	<buildpathentry kind="src" path="vendor/dompdf/dompdf/include">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
 		</attributes>
@@ -91,6 +86,11 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
+	<buildpathentry kind="src" path="vendor/laravelcollective/html/src">
+		<attributes>
+			<attribute name="composer" value="vendor"/>
+		</attributes>
+	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/league/flysystem/src">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
@@ -131,12 +131,7 @@
 			<attribute name="composer" value="vendor"/>
 		</attributes>
 	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/phenx/php-font-lib/src/FontLib">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/phenx/php-svg-lib/src">
+	<buildpathentry kind="src" path="vendor/phenx/php-font-lib/classes">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
 		</attributes>
@@ -212,11 +207,6 @@
 		</attributes>
 	</buildpathentry>
 	<buildpathentry kind="src" path="vendor/rcrowe/twigbridge/src">
-		<attributes>
-			<attribute name="composer" value="vendor"/>
-		</attributes>
-	</buildpathentry>
-	<buildpathentry kind="src" path="vendor/sabberworm/php-css-parser/lib">
 		<attributes>
 			<attribute name="composer" value="vendor"/>
 		</attributes>

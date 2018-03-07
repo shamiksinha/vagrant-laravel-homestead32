@@ -2,6 +2,12 @@
 
 namespace Adldap\Laravel\Auth;
 
+use Adldap\Laravel\Facades\Resolver;
+use Adldap\Laravel\Events\AuthenticationRejected;
+use Adldap\Laravel\Events\AuthenticationSuccessful;
+use Adldap\Laravel\Events\DiscoveredWithCredentials;
+use Adldap\Laravel\Events\AuthenticatedWithCredentials;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Contracts\Auth\Authenticatable;
 
 class NoDatabaseUserProvider extends Provider
@@ -11,7 +17,7 @@ class NoDatabaseUserProvider extends Provider
      */
     public function retrieveById($identifier)
     {
-        $user = $this->getResolver()->byId($identifier);
+        $user = Resolver::byId($identifier);
 
         if ($user instanceof Authenticatable) {
             // We'll verify we have the correct instance just to ensure we
@@ -41,8 +47,8 @@ class NoDatabaseUserProvider extends Provider
      */
     public function retrieveByCredentials(array $credentials)
     {
-        if ($user = $this->getResolver()->byCredentials($credentials)) {
-            $this->handleDiscoveredWithCredentials($user);
+        if ($user = Resolver::byCredentials($credentials)) {
+            Event::fire(new DiscoveredWithCredentials($user));
 
             return $user;
         }
@@ -53,14 +59,16 @@ class NoDatabaseUserProvider extends Provider
      */
     public function validateCredentials(Authenticatable $user, array $credentials)
     {
-        // Perform LDAP authentication and validate the authenticated model.
-        if (
-            $this->getResolver()->authenticate($user, $credentials) &&
-            $this->newValidator($this->getRules($user))->passes()
-        ) {
-            $this->handleAuthenticatedWithCredentials($user);
+        if (Resolver::authenticate($user, $credentials)) {
+            Event::fire(new AuthenticatedWithCredentials($user));
 
-            return true;
+            if ($this->passesValidation($user)) {
+                Event::fire(new AuthenticationSuccessful($user));
+
+                return true;
+            }
+
+            Event::fire(new AuthenticationRejected($user));
         }
 
         return false;

@@ -28,7 +28,7 @@ class Cashier
     protected static $formatCurrencyUsing;
 
     /**
-     * Set the currency to be used when billing users.
+     * Set the currency to be used when billing Stripe models.
      *
      * @param  string  $currency
      * @param  string|null  $symbol
@@ -46,6 +46,7 @@ class Cashier
      *
      * @param  string  $currency
      * @return string
+     * @throws \Exception
      */
     protected static function guessCurrencySymbol($currency)
     {

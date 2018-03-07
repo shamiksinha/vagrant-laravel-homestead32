@@ -4,10 +4,17 @@ namespace Adldap\Configuration;
 
 use Adldap\Connections\ConnectionInterface;
 use Adldap\Configuration\Validators\ArrayValidator;
-use Adldap\Configuration\Validators\StringValidator;
+use Adldap\Configuration\Validators\StringOrNullValidator;
 use Adldap\Configuration\Validators\BooleanValidator;
 use Adldap\Configuration\Validators\IntegerValidator;
 
+/**
+ * Class DomainConfiguration
+ *
+ * Contains an array of configuration options for a single LDAP connection.
+ *
+ * @package Adldap\Configuration
+ */
 class DomainConfiguration
 {
     /**
@@ -43,10 +50,10 @@ class DomainConfiguration
         'follow_referrals' => false,
 
         // The account prefix to use when authenticating users.
-        'account_prefix' => '',
+        'account_prefix' => null,
 
         // The account suffix to use when authenticating users.
-        'account_suffix' => '',
+        'account_suffix' => null,
 
         // The username to connect to your hosts with.
         'admin_username' => '',
@@ -55,10 +62,10 @@ class DomainConfiguration
         'admin_password' => '',
 
         // The account prefix to use when authenticating your admin account above.
-        'admin_account_prefix' => '',
+        'admin_account_prefix' => null,
 
         // The account prefix to use when authenticating your admin account above.
-        'admin_account_suffix' => '',
+        'admin_account_suffix' => null,
 
         // Custom LDAP options that you'd like to utilize.
         'custom_options' => [],
@@ -152,7 +159,7 @@ class DomainConfiguration
         } elseif (is_bool($default)) {
             $validator = new BooleanValidator($key, $value);
         } else {
-            $validator = new StringValidator($key, $value);
+            $validator = new StringOrNullValidator($key, $value);
         }
 
         return $validator->validate();

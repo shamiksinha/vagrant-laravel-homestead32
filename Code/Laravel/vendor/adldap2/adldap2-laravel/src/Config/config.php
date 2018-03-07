@@ -29,12 +29,12 @@ return [
             | connectivity rather than having to connect manually
             | in your application.
             |
-            | If this is set to false, you must connect manually before running
+            | If this is set to false, you **must** connect manually before running
             | LDAP operations.
             |
             */
 
-            'auto_connect' => true,
+            'auto_connect' => env('ADLDAP_AUTO_CONNECT', true),
 
             /*
             |--------------------------------------------------------------------------
@@ -44,7 +44,8 @@ return [
             | The connection class to use to run raw LDAP operations on.
             |
             | Custom connection classes must implement:
-            |  \Adldap\Connections\ConnectionInterface
+            |
+            |  Adldap\Connections\ConnectionInterface
             |
             */
 
@@ -59,7 +60,15 @@ return [
             |
             | You can also set this option to `null` to use the default schema class.
             |
-            | Custom schema classes must implement \Adldap\Schemas\SchemaInterface
+            | For OpenLDAP, you must use the schema:
+            |
+            |   Adldap\Schemas\OpenLDAP::class
+            |
+            | For FreeIPA, you must use the schema:
+            |
+            |   Adldap\Schemas\FreeIPA::class
+            |
+            | Custom schema classes must implement Adldap\Schemas\SchemaInterface
             |
             */
 
@@ -83,7 +92,7 @@ return [
                 | Account Prefix
                 |--------------------------------------------------------------------------
                 |
-                | The account prefix option is the prefix of your user accounts in AD.
+                | The account prefix option is the prefix of your user accounts in LDAP directory.
                 |
                 | This string is prepended to authenticating users usernames.
                 |
@@ -96,7 +105,7 @@ return [
                 | Account Suffix
                 |--------------------------------------------------------------------------
                 |
-                | The account suffix option is the suffix of your user accounts in AD.
+                | The account suffix option is the suffix of your user accounts in your LDAP directory.
                 |
                 | This string is appended to authenticating users usernames.
                 |
@@ -125,7 +134,7 @@ return [
                 | Port
                 |--------------------------------------------------------------------------
                 |
-                | The port option is used for authenticating and binding to your AD server.
+                | The port option is used for authenticating and binding to your LDAP server.
                 |
                 */
 
@@ -162,16 +171,18 @@ return [
 
                 /*
                 |--------------------------------------------------------------------------
-                | Administrator Account Suffix
+                | Administrator Account Suffix / Prefix
                 |--------------------------------------------------------------------------
                 |
-                | This option allows you to set a different account suffix for your
-                | configured administrator account upon binding.
+                | This option allows you to set a different account prefix and suffix
+                | for your configured administrator account upon binding.
                 |
-                | If left empty, your `account_suffix` option will be used.
+                | If left empty or set to `null`, your `account_prefix` and
+                | `account_suffix` options above will be used.
                 |
                 */
 
+                'admin_account_prefix' => env('ADLDAP_ADMIN_ACCOUNT_PREFIX', ''),
                 'admin_account_suffix' => env('ADLDAP_ADMIN_ACCOUNT_SUFFIX', ''),
 
                 /*
@@ -179,7 +190,7 @@ return [
                 | Administrator Username & Password
                 |--------------------------------------------------------------------------
                 |
-                | When connecting to your AD server, a username and password is required
+                | When connecting to your LDAP server, a username and password is required
                 | to be able to query and run operations on your server(s). You can
                 | use any user account that has these permissions. This account
                 | does not need to be a domain administrator unless you
@@ -220,8 +231,8 @@ return [
                 |
                 */
 
-                'use_ssl' => false,
-                'use_tls' => false,
+                'use_ssl' => env('ADLDAP_USE_SSL', false),
+                'use_tls' => env('ADLDAP_USE_TLS', false),
 
             ],
 

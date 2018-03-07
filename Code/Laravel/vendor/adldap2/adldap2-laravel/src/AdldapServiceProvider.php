@@ -4,12 +4,14 @@ namespace Adldap\Laravel;
 
 use Adldap\Adldap;
 use Adldap\AdldapInterface;
+use Adldap\Auth\BindException;
 use Adldap\Connections\Provider;
 use Adldap\Schemas\SchemaInterface;
 use Adldap\Connections\ConnectionInterface;
 use Adldap\Laravel\Exceptions\ConfigurationMissingException;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\ServiceProvider;
 
 class AdldapServiceProvider extends ServiceProvider
 {
@@ -72,6 +74,9 @@ class AdldapServiceProvider extends ServiceProvider
     /**
      * Adds providers to the specified Adldap instance.
      *
+     * If a provider is configured to auto connect,
+     * this method will throw a BindException.
+     *
      * @param Adldap $adldap
      * @param array  $connections
      *
@@ -82,22 +87,28 @@ class AdldapServiceProvider extends ServiceProvider
     protected function addProviders(Adldap $adldap, array $connections = [])
     {
         // Go through each connection and construct a Provider.
-        collect($connections)->each(function ($settings, $name) use ($adldap) {
+        foreach ($connections as $name => $settings) {
             // Create a new provider.
             $provider = $this->newProvider(
                 $settings['connection_settings'],
-                new $settings['connection'](),
-                new $settings['schema']()
+                new $settings['connection'],
+                new $settings['schema']
             );
 
-            // Try connecting to the provider if `auto_connect` is true.
-            if (isset($settings['auto_connect']) && $settings['auto_connect'] === true) {
-                $provider->connect();
+            if ($this->shouldAutoConnect($settings)) {
+                try {
+                    $provider->connect();
+                } catch (BindException $e) {
+                    // We'll catch and log bind exceptions so
+                    // any connection issues fail gracefully
+                    // in our application.
+                    Log::error($e);
+                }
             }
 
             // Add the provider to the Adldap container.
             $adldap->addProvider($provider, $name);
-        });
+        }
 
         return $adldap;
     }
@@ -124,6 +135,19 @@ class AdldapServiceProvider extends ServiceProvider
     protected function newProvider($configuration = [], ConnectionInterface $connection = null, SchemaInterface $schema = null)
     {
         return new Provider($configuration, $connection, $schema);
+    }
+
+    /**
+     * Determine if the given settings is configured for auto-connecting.
+     *
+     * @param array $settings
+     *
+     * @return bool
+     */
+    protected function shouldAutoConnect(array $settings)
+    {
+        return array_key_exists('auto_connect', $settings)
+            && $settings['auto_connect'] === true;
     }
 
     /**

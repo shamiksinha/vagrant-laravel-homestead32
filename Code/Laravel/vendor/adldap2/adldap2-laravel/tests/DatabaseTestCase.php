@@ -60,6 +60,10 @@ class DatabaseTestCase extends TestCase
                 'driver' => 'adldap',
                 'model'  => User::class,
             ],
+            'users'  => [
+                'driver' => 'eloquent',
+                'model'  => User::class,
+            ],
         ]);
     }
 }

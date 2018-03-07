@@ -2,36 +2,24 @@
 
 namespace Adldap\Laravel\Tests;
 
-use Mockery as m;
 use Adldap\Models\User;
-use Adldap\Laravel\Auth\ResolverInterface;
-use Adldap\Laravel\Events\DiscoveredWithCredentials;
-use Adldap\Laravel\Events\AuthenticatedWithCredentials;
+use Adldap\Laravel\Facades\Resolver;
 use Illuminate\Support\Facades\Auth;
 
 class NoDatabaseProviderTest extends NoDatabaseTestCase
 {
-    public function test_auth_passes()
+    /** @test */
+    public function only_ldap_is_used_when_authenticating()
     {
         $credentials = [
             'email' => 'jdoe@email.com',
             'password' => '12345',
         ];
 
-        $resolver = m::mock(ResolverInterface::class);
-
         $user = $this->makeLdapUser();
 
-        $resolver
-            ->shouldReceive('byCredentials')->once()->andReturn($user)
+        Resolver::shouldReceive('byCredentials')->once()->andReturn($user)
             ->shouldReceive('authenticate')->once()->withArgs([$user, $credentials])->andReturn(true);
-
-        Auth::getProvider()->setResolver($resolver);
-
-        $this->expectsEvents([
-            DiscoveredWithCredentials::class,
-            AuthenticatedWithCredentials::class,
-        ]);
 
         $this->assertTrue(Auth::attempt($credentials));
 

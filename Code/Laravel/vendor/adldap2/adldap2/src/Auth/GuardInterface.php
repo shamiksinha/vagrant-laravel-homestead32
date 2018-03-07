@@ -38,9 +38,9 @@ interface GuardInterface
      * @param string $prefix
      * @param string $suffix
      *
-     * @returns void
-     *
      * @throws \Adldap\Auth\BindException When binding to your LDAP server fails.
+     *
+     * @return void
      */
     public function bind($username, $password, $prefix = null, $suffix = null);
 
@@ -49,6 +49,8 @@ interface GuardInterface
      * configuration administrator credentials.
      *
      * @throws \Adldap\Auth\BindException When binding as your administrator account fails.
+     *
+     * @return void
      */
     public function bindAsAdministrator();
 }

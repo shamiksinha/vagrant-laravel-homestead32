@@ -72,7 +72,7 @@
             <!-- Organization Name / Date -->
             <td>
                 <br><br>
-                <strong>To:</strong> {{ $user->email ?: $user->name }}
+                <strong>To:</strong> {{ $owner->email ?: $owner->name }}
                 <br>
                 <strong>Date:</strong> {{ $invoice->date()->toFormattedDateString() }}
             </td>
@@ -89,6 +89,9 @@
                 @endif
                 @if (isset($phone))
                     <strong>T</strong> {{ $phone }}<br>
+                @endif
+                @if (isset($vendorVat))
+                    {{ $vendorVat }}<br>
                 @endif
                 @if (isset($url))
                     <a href="{{ $url }}">{{ $url }}</a>

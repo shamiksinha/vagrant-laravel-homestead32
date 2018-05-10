@@ -3,9 +3,8 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\GstRateConfig;
 
-class GstRateConfigTable extends Migration
+class UdbCommonConstantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,12 @@ class GstRateConfigTable extends Migration
      */
     public function up()
     {
-		Schema::dropIfExists('gst_rate_configs');
-        Schema::create('gst_rate_configs', function (Blueprint $table) {
+		Schema::dropIfExists('udb_common_constants');
+        Schema::create('udb_common_constants', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('rate', 14,6);
+			$table->string('attribute_module');
+			$table->string('attribute_key');
+			$table->string('attribute_value');
 			$table->softDeletes();
             $table->timestamps();
         });	
@@ -30,6 +31,6 @@ class GstRateConfigTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gst_rate_configs');
+        Schema::dropIfExists('udb_common_constants');
     }
 }

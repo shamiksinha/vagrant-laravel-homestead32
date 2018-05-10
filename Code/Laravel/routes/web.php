@@ -49,3 +49,28 @@ Route::get('/subscribe', 'SubscribeController@showSubscribeForm');/*function () 
 });*/
 
 Route::post('/subscribe', 'SubscribeController@subscribe');
+Route::post('/getBookData', 'SubscribeController@getBookData');
+
+Route::resource('showpdf', 'PdfController' , ['only' => [
+		'show'
+]]);
+
+Route::get('showswf/{bookName}', 'PdfController@showSwf');
+
+Route::get('/download/{bookName}', 'PdfController@download');
+
+Route::post('/download', 'PdfController@downloadBook');
+
+Route::get("/showSelectedPdf/{bookName}",function($id){
+	return view('showSearchPDF')->with('bookName',$id)->with('bookPath','pdf/'.$id);//);
+});
+
+// Social Auth
+Route::get('auth/social', 'Auth\SocialAuthController@show')->name('social.login');
+Route::get('oauth/{driver}', 'Auth\SocialAuthController@redirectToProvider')->name('social.oauth');
+Route::get('oauth/{driver}/callback', 'Auth\SocialAuthController@handleProviderCallback')->name('social.callback');
+
+Route::post('buybooks','BuyBookController@buybooks');
+Route::post('checkout','BuyBookController@checkout');
+
+Route::get('paymentStatus','BuyBookController@paymentStatus');

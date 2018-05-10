@@ -183,9 +183,12 @@ return [
          App\Providers\SolariumServiceProvider::class,
     		
     	/*
-    	 * Register AdLdap2 provider
+    	 * Register Html Service provider
     	 */
-    	Adldap\Laravel\AdldapServiceProvider::class,
+    	Collective\Html\HtmlServiceProvider::class,
+		App\Providers\ReadCsvServiceProvider::class,
+		Laravel\Socialite\SocialiteServiceProvider::class,
+    	App\Providers\InstaMojoServiceProvider::class,
     ],
 
     /*
@@ -234,11 +237,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-    	/*
-    	 * AdLdap2 facade
-    	 */
-    	'Adldap' => Adldap\Laravel\Facades\Adldap::class,
-
+    	'Form' => Collective\Html\FormFacade::class,
+    	'Html' => Collective\Html\HtmlFacade::class,
+    	'Input' => Illuminate\Support\Facades\Input::class,
+		'ReadCsv' => App\ReadCsvFacade::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    	'Instamojo' => App\InstamojoFacade::class,
     ],
 
 ];

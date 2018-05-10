@@ -14,6 +14,6 @@ const { mix } = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js');
 mix.js('resources/assets/js/udb_flashplayer.js', 'public/js');
 mix.js('resources/assets/js/udb_showpdf.js', 'public/js');
-mix.js('resources/assets/js/udb_showGallery.js', 'public/js');
+mix.js('resources/assets/js/buyBooks.js', 'public/js');
 mix.sass('resources/assets/sass/app.scss', 'public/css');
 mix.styles('resources/assets/css/rkm-udb.css', 'public/css/rkm-udb.css');
